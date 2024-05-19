@@ -1,0 +1,8 @@
+---
+- name: Nginx Tool Playbook
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - ./ansible_roles/roles/nginx_tool
