@@ -1,0 +1,26 @@
+---
+required_software:
+  - vim
+  - git
+  - curl
+
+users:
+  - name: user1
+    password: password1
+  - name: user2
+    password: password2
+  - name: user3
+    password: password3
+
+git_repositories:
+  - repo: https://github.com/github/platform-samples.git
+    dest: /opt/repo1
+
+folder_structures:
+  - /tmp/data
+  - /opt/app1
+  - /opt/app2
+
+# Add other variables for system-specific settings
+...
+

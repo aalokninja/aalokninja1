@@ -1,0 +1,9 @@
+---
+- name: Install Nginx
+  become: yes
+  package:
+    name: nginx
+    state: "{{ nginx_state | default('present') }}"
+  when: (ansible_distribution == 'Ubuntu' and nginx_ubuntu_install) or (ansible_distribution == 'CentOS' and nginx_centos_install)
+  notify: Restart Nginx
+

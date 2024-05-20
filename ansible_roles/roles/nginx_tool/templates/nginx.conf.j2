@@ -1,0 +1,4 @@
+worker_processes {{ nginx_worker_processes | default(2) }};
+error_log {{ nginx_error_log | default('/var/log/nginx/error.log') }} {{ nginx_error_log_level | default('error') }};
+pid {{ nginx_pid_file | default('/var/run/nginx/nginx.pid') }};
+

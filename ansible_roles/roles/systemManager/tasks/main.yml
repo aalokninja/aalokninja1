@@ -1,0 +1,57 @@
+---
+#- name: Manage Software Installation
+  #include_tasks: software.yml
+    #tags:
+    #- software
+
+      #- name: Manage Users
+  #include_tasks: users.yml
+    #tags:
+    #- users
+
+      #- name: Manage Git Repositories
+  #include_tasks: git_repositories.yml
+    # tags:
+    #- git
+
+      #- name: Manage Folder Structures
+  #include_tasks: folder_structures.yml
+    #tags:
+    #- folders
+
+      #- name: Manage System Specific Settings
+  #include_tasks: system_settings.yml
+    #tags:
+    # - system_settings
+
+      #software_install
+- name: Install Required Software
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ required_software }}"
+
+    #users_creation
+- name: Create Users
+  user:
+    name: "{{ item.name }}"
+    password: "{{ item.password | password_hash('sha512') }}"
+    state: present
+  with_items: "{{ users }}"
+
+    #git_repo
+- name: Clone Git Repositories
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ item.dest }}"
+  with_items: "{{ git_repositories }}"
+
+    #create_folder
+- name: Create Folder Structures
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items: "{{ folder_structures }}"
+#- name: Manage System Settings
+  
+
